@@ -22,13 +22,13 @@ jobs:
       script:
         - pnpm test
         - sonar-scanner
-    - stage: release
-      if: branch = master
-      node_js: lts/*
-      script:
-        - mkdir -p docs
-      deploy:
-        provider: script
-        skip_cleanup: true
-        script:
-          - pnpx semantic-release
+    #- stage: release
+    #  if: branch = master
+    #  node_js: lts/*
+    #  script:
+    #    - mkdir -p docs
+    #  deploy:
+    #    provider: script
+    #    skip_cleanup: true
+    #    script:
+    #      - pnpx semantic-release
