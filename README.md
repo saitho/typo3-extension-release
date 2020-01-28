@@ -1,5 +1,7 @@
 # @saithodev/typo3-extension-release
 
+[![npm version](https://img.shields.io/npm/v/@saithodev/typo3-extension-release.svg)](https://www.npmjs.com/package/@saithodev/typo3-extension-release)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=typo3-extension-release&metric=alert_status)](https://sonarcloud.io/dashboard?id=typo3-extension-release)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
