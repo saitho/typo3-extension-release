@@ -1,7 +1,7 @@
 {
   "name": "@saithodev/typo3-extension-release",
   "description": "Tool for releasing TYPO3 extensions",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "author": "Mario Lubenka",
   "license": "MIT",
   "keywords": [
