@@ -43,9 +43,16 @@ export class VersionizeCommand extends AbstractCommand {
         this.astProcessor.setExtEmConfValue('version', version);
         this.astProcessor.setExtEmConfValue('state', state);
 
+        let message = `ext_emconf.php: Set version to ${version} and state to ${state}`;
+
+        if (request.flags['dry-run']) {
+            message += `\nDRY-RUN active. Nothing written.`;
+            return new SuccessResponse(message);
+        }
+
         // Overwrite old file
         fs.writeFileSync(fileName, this.astProcessor.toPHP(), {flag: 'w'});
 
-        return new SuccessResponse(`ext_emconf.php: Set version to ${version} and state to ${state}`);
+        return new SuccessResponse(message);
     }
 }

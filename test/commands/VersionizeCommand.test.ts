@@ -1,4 +1,5 @@
 import * as mockFs from 'mock-fs';
+import * as fs from 'fs';
 import {VersionizeCommand} from "../../src/commands/VersionizeCommand";
 import {Cli, SuccessResponse, ErrorResponse} from "@saithodev/cli-base";
 import {mock, instance} from 'ts-mockito';
@@ -17,7 +18,7 @@ $EM_CONF[$_EXTKEY] = [
         const command = new VersionizeCommand();
         const response = await command.handleRequest({
             input: ['versionize', '1.0.0', 'alpha'],
-            flags: null
+            flags: {'dry-run': false}
         }, instance(mockCli));
         mockFs.restore();
         expect(response).toBeInstanceOf(SuccessResponse);
@@ -37,7 +38,7 @@ $EM_CONF[$_EXTKEY] = [
         const mockCli = mock(Cli);
         const response = await command.handleRequest({
             input: ['versionize', '1.0.0'],
-            flags: null
+            flags: {'dry-run': false}
         }, instance(mockCli));
         mockFs.restore();
         expect(response).toBeInstanceOf(SuccessResponse);
@@ -57,11 +58,33 @@ $EM_CONF[$_EXTKEY] = [
         const mockCli = mock(Cli);
         const response = await command.handleRequest({
             input: ['versionize', '1.0.0-dev'],
-            flags: null
+            flags: {'dry-run': false}
         }, instance(mockCli));
         mockFs.restore();
         expect(response).toBeInstanceOf(SuccessResponse);
         expect(response.message).toEqual('ext_emconf.php: Set version to 1.0.0-dev and state to beta');
+    });
+
+    it("dry-run does not write", async () => {
+        const mockCli = mock(Cli);
+        const fileContent = `<?php
+$EM_CONF[$_EXTKEY] = [
+    "version" => "",
+    "state" => ""
+];
+`;
+        mockFs({
+            'ext_emconf.php': fileContent
+        });
+        const command = new VersionizeCommand();
+        const response = await command.handleRequest({
+            input: ['versionize', '1.0.0', 'alpha'],
+            flags: {'dry-run': true}
+        }, instance(mockCli));
+        expect(fs.readFileSync('ext_emconf.php').toString()).toEqual(fileContent);
+        mockFs.restore();
+        expect(response).toBeInstanceOf(SuccessResponse);
+        expect(response.message).toEqual('ext_emconf.php: Set version to 1.0.0 and state to alpha\nDRY-RUN active. Nothing written.');
     });
 
     it("returns error if ext_emconf.php file not found", async () => {
@@ -70,7 +93,7 @@ $EM_CONF[$_EXTKEY] = [
         const mockCli = mock(Cli);
         const response = await command.handleRequest({
             input: ['versionize', '1.0.0'],
-            flags: null
+            flags: {'dry-run': false}
         }, instance(mockCli));
         mockFs.restore();
         expect(response).toBeInstanceOf(ErrorResponse);
@@ -85,7 +108,7 @@ $EM_CONF[$_EXTKEY] = [
         const mockCli = mock(Cli);
         const response = await command.handleRequest({
             input: ['versionize', '1.0.0'],
-            flags: null
+            flags: {'dry-run': false}
         }, instance(mockCli));
         mockFs.restore();
         expect(response).toBeInstanceOf(ErrorResponse);
