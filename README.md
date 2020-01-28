@@ -7,6 +7,14 @@
 
 This is a CLI tool which helps releasing TYPO3 extensions.
 
+## Installation
+
+Require the package into your TYPO3 extensions's package.json:
+
+```
+npm install @saithodev/typo3-extension-release --save-dev
+```
+
 ## Features
 
 ### Setting version and state in ext_emconf.php
@@ -14,30 +22,31 @@ This is a CLI tool which helps releasing TYPO3 extensions.
 Command:
 
 ```shell script
-$ typo3-extension-release versionize <version> [state]
+$ npx @saithodev/typo3-extension-release versionize <version> {state} [--dry-run]
 ```
 
 If no state is given, it will set the state to "stable".
 If version ends with "-dev" it will set state to "beta".
 
 ```shell script
-$ typo3-extension-release versionize 1.2.0
+$ npx @saithodev/typo3-extension-release versionize 1.2.0
 ext_emconf.php: Set version to 1.2.0 and state to stable
 ```
 
 ```shell script
-$ typo3-extension-release versionize 1.2.0-dev
+$ npx @saithodev/typo3-extension-release versionize 1.2.0-dev
 ext_emconf.php: Set version to 1.2.0-dev and state to beta
 ```
 
 ```shell script
-$ typo3-extension-release versionize 1.2.0-dev stable
+$ npx @saithodev/typo3-extension-release versionize 1.2.0-dev stable --dry-run
 ext_emconf.php: Set version to 1.2.0-dev and state to stable
+DRY-RUN active. Nothing written.
 ```
 
 ## Planned features
 
-- None yet.
+- Improving console error output (missing params, etc)
 
 ## Features that might fit here
 
