@@ -12,12 +12,15 @@
     "t3ext"
   ],
   "main": "dist/index.js",
+  "bin": {
+    "typo3-extension-release": "dist/bin/typo3-extension-release"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/saitho/typo3-extension-release"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && mv ./dist/bin/typo3-extension-release.js ./dist/bin/typo3-extension-release",
     "docs:build": "typedoc --out ./docs --mode modules --tsconfig ./tsconfig.json ./src/",
     "test": "jest --detectOpenHandles --coverage --verbose",
     "semantic-release": "semantic-release",
