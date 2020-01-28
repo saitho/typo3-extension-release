@@ -2,10 +2,13 @@ dependencies:
   meow: 6.0.0
   minimist: 1.2.0
   minimist-options: 4.0.2
+  php-parser: 2.2.0
+  php-unparser: 0.2.9
 devDependencies:
   '@saithodev/semantic-release-sharedconf-npm': 2.0.2_semantic-release@16.0.1
   '@types/jest': 24.0.25
   '@types/meow': 5.0.0
+  '@types/node': 13.5.0
   commitizen: 4.0.3
   cz-conventional-changelog: 3.0.2
   jest: 24.9.0
@@ -4745,6 +4748,14 @@ packages:
     dev: true
     resolution:
       integrity: sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
+  /php-parser/2.2.0:
+    dev: false
+    resolution:
+      integrity: sha1-ZzhPClkz2770C+qwqzHQuMWC/4g=
+  /php-unparser/0.2.9:
+    dev: false
+    resolution:
+      integrity: sha1-FDbZ7RNtv5oIeNhp3u+Xc8c2tW8=
   /picomatch/2.2.1:
     dev: true
     engines:
@@ -6478,12 +6489,15 @@ specifiers:
   '@saithodev/semantic-release-sharedconf-npm': ^2.0.2
   '@types/jest': ^24.0.23
   '@types/meow': ^5.0.0
+  '@types/node': ^13.5.0
   commitizen: ^4.0.3
   cz-conventional-changelog: ^3.0.2
   jest: ^24.9.0
   meow: ^6.0.0
   minimist: ^1.2.0
   minimist-options: ^4.0.2
+  php-parser: ^2.2.0
+  php-unparser: ^0.2.9
   semantic-release: ^17.0.0
   ts-jest: ^24.2.0
   ts-mockito: ^2.5.0
