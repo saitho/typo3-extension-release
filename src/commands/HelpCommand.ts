@@ -15,11 +15,10 @@ export class HelpCommand extends AbstractCliCommand {
    $ ${cli.getBinaryName()} [command]
     
   Available commands
-${this.listCommands(cli)}
-`;
+${this.listCommands(cli)}`;
         const options = cli.getOptions();
-        if (cli.getOptions()) {
-            helpText += `  Available options:\n`;
+        if (Object.keys(options).length) {
+            helpText += `\n  Available options:\n`;
             for (const flag of Object.keys(options)) {
                 const option: any = options[flag];
                 helpText += '   ';

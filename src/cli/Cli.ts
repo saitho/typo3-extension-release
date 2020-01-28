@@ -72,7 +72,7 @@ export class Cli {
         let response: ICliResponse;
         const command = this.commands.filter((command) => command.canHandleRequest(request));
         if (command.length == 0) {
-            response = new CliErrorResponse('The requested command was not found.');
+            response = new CliErrorResponse(`The requested command "${request.input[0]}" was not found.`);
         } else if (command.length > 1) {
             response = new CliErrorResponse('Multiple commands matching this call were found.');
         } else {
