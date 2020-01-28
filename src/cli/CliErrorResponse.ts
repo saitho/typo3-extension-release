@@ -5,5 +5,4 @@ export class CliErrorResponse implements ICliResponse {
         this.message = message;
     }
     public message: string;
-    public errorCode: number;
 }

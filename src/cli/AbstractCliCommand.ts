@@ -1,10 +1,20 @@
 import {ICliCommand} from "./ICliCommand";
 import {ICliRequest} from "./ICliRequest";
 import {ICliResponse} from "./ICliResponse";
+import {Cli} from "./Cli";
+import {ICommandInfos} from "./ICommandInfos";
 
 export abstract class AbstractCliCommand implements ICliCommand {
     protected abstract commandName: string;
+    protected abstract commandDescription: string;
     protected arguments = [];
+
+    getInfos(): ICommandInfos {
+        return {
+            name: this.commandName,
+            description: this.commandDescription,
+        };
+    }
 
     canHandleRequest(request: ICliRequest): boolean {
         if (request.input.length == 0) {
@@ -25,9 +35,9 @@ export abstract class AbstractCliCommand implements ICliCommand {
         return true;
     }
 
-    protected abstract process(request: ICliRequest): ICliResponse;
+    protected abstract process(request: ICliRequest, cli: Cli): ICliResponse;
 
-    handleRequest(request: ICliRequest): ICliResponse {
-        return this.process(request);
+    handleRequest(request: ICliRequest, cli: Cli): ICliResponse {
+        return this.process(request, cli);
     }
 }

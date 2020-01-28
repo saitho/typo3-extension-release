@@ -1,32 +1,20 @@
 import {Cli} from "./cli/Cli";
 import {VersionizeCommand} from "./commands/VersionizeCommand";
+import {HelpCommand} from "./commands/HelpCommand";
+import {VersionCommand} from "./commands/VersionCommand";
 
-new Cli()
-    .setExamples([
-        {command: 'foo', output: 'bar', root: false}
-    ])
+new Cli('typo3-extension-release')
     .setOptions({
-        rainbow: {
-            type: 'boolean',
-            default: true,
-            alias: 'r',
-            description: 'rainbow'
-        },
-        unicorn: {
+        'dry-run': {
             type: 'boolean',
             default: false,
-            alias: 'u'
-        },
-        cake: {
-            type: 'boolean',
-            alias: 'c'
-        },
-        sparkles: {
-            type: 'boolean',
-            default: true
+            alias: 'd',
+            description: 'Simulates changes without writing them'
         }
     })
     .addCommand(new VersionizeCommand())
+    .addCommand(new HelpCommand())
+    .addCommand(new VersionCommand())
     .run()
     .catch((error) => {
         console.error(error);

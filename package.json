@@ -26,7 +26,6 @@
   "devDependencies": {
     "@saithodev/semantic-release-sharedconf-npm": "^2.0.2",
     "@types/jest": "^24.0.23",
-    "@types/meow": "^5.0.0",
     "@types/node": "^13.5.0",
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
@@ -44,10 +43,11 @@
     }
   },
   "dependencies": {
-    "meow": "^6.0.0",
     "minimist": "^1.2.0",
     "minimist-options": "^4.0.2",
     "php-parser": "^2.2.0",
-    "php-unparser": "^0.2.9"
+    "php-unparser": "^0.2.9",
+    "read-pkg-up": "^7.0.1",
+    "yargs-parser": "^16.1.0"
   }
 }

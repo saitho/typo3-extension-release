@@ -8,6 +8,7 @@ import {ExtEmConfAstProcessor} from "../helper/ExtEmConfAstProcessor";
 
 export class VersionizeCommand extends AbstractCliCommand {
     commandName = 'versionize';
+    commandDescription = 'Adjusts version and state in ext_emconf.php';
 
     protected astProcessor: ExtEmConfAstProcessor;
 
