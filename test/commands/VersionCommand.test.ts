@@ -4,14 +4,14 @@ import {Cli} from "../../src/cli/Cli";
 import {mock, instance, when} from 'ts-mockito';
 
 describe("VersionCommand", () => {
-    it("shows version from package.json", () => {
+    it("shows version from package.json", async () => {
         const mockCli = mock(Cli);
         when(mockCli.getPackageInfo()).thenReturn({
             version: '1.2.3-test'
         });
 
         const command = new VersionCommand();
-        const response = command.handleRequest({
+        const response = await command.handleRequest({
             input: ['version'],
             flags: null
         }, instance(mockCli));

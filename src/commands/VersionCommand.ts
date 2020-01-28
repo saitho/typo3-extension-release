@@ -8,7 +8,7 @@ export class VersionCommand extends AbstractCliCommand {
     commandName = 'version';
     commandDescription = 'Displays version number of this tool';
 
-    protected process(request: ICliRequest, cli: Cli): ICliResponse {
+    protected async process(request: ICliRequest, cli: Cli): Promise<ICliResponse> {
         return new CliSuccessResponse(`${cli.getPackageInfo().version}`);
     }
 }

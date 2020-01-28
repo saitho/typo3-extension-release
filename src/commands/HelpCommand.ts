@@ -8,7 +8,7 @@ export class HelpCommand extends AbstractCliCommand {
     commandName = 'help';
     commandDescription = 'Shows help (this page)';
 
-    protected process(request: ICliRequest, cli: Cli): ICliResponse {
+    protected async process(request: ICliRequest, cli: Cli): Promise<ICliResponse> {
         let helpText = `${cli.getPackageInfo().description}
 
   Usage

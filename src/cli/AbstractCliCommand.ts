@@ -35,9 +35,9 @@ export abstract class AbstractCliCommand implements ICliCommand {
         return true;
     }
 
-    protected abstract process(request: ICliRequest, cli: Cli): ICliResponse;
+    protected abstract process(request: ICliRequest, cli: Cli): Promise<ICliResponse>;
 
-    handleRequest(request: ICliRequest, cli: Cli): ICliResponse {
+    handleRequest(request: ICliRequest, cli: Cli): Promise<ICliResponse> {
         return this.process(request, cli);
     }
 }

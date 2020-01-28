@@ -5,7 +5,7 @@ import {mock, instance, when} from 'ts-mockito';
 import {HelpCommand} from "../../src/commands/HelpCommand";
 
 describe("HelpCommand", () => {
-    it("shows available commands and options", () => {
+    it("shows available commands and options", async () => {
         const mockCli = mock(Cli);
         when(mockCli.getBinaryName()).thenReturn('test-binary');
         when(mockCli.getPackageInfo()).thenReturn({
@@ -30,7 +30,7 @@ describe("HelpCommand", () => {
         });
 
         const command = new HelpCommand();
-        const response = command.handleRequest({
+        const response = await command.handleRequest({
             input: ['help'],
             flags: null
         }, instance(mockCli));
@@ -53,7 +53,7 @@ describe("HelpCommand", () => {
         expect(response.message).toEqual(expectedOutput);
     });
 
-    it("shows available commands and no options when none are configured", () => {
+    it("shows available commands and no options when none are configured", async () => {
         const mockCli = mock(Cli);
         when(mockCli.getBinaryName()).thenReturn('test-binary');
         when(mockCli.getPackageInfo()).thenReturn({
@@ -66,7 +66,7 @@ describe("HelpCommand", () => {
         when(mockCli.getOptions()).thenReturn({});
 
         const command = new HelpCommand();
-        const response = command.handleRequest({
+        const response = await command.handleRequest({
             input: ['help'],
             flags: null
         }, instance(mockCli));

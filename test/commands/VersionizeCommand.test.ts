@@ -6,7 +6,7 @@ import {Cli} from "../../src/cli/Cli";
 import {mock, instance} from 'ts-mockito';
 
 describe("VersionizeCommand", () => {
-    it("sets supplied version and state", () => {
+    it("sets supplied version and state", async () => {
         const mockCli = mock(Cli);
         mockFs({
             'ext_emconf.php': `<?php
@@ -17,7 +17,7 @@ $EM_CONF[$_EXTKEY] = [
 `
         });
         const command = new VersionizeCommand();
-        const response = command.handleRequest({
+        const response = await command.handleRequest({
             input: ['versionize', '1.0.0', 'alpha'],
             flags: null
         }, instance(mockCli));
@@ -26,7 +26,7 @@ $EM_CONF[$_EXTKEY] = [
         expect(response.message).toEqual('ext_emconf.php: Set version to 1.0.0 and state to alpha');
     });
 
-    it("set state to stable if none supplied", () => {
+    it("set state to stable if none supplied", async () => {
         mockFs({
             'ext_emconf.php': `<?php
 $EM_CONF[$_EXTKEY] = [
@@ -37,7 +37,7 @@ $EM_CONF[$_EXTKEY] = [
         });
         const command = new VersionizeCommand();
         const mockCli = mock(Cli);
-        const response = command.handleRequest({
+        const response = await command.handleRequest({
             input: ['versionize', '1.0.0'],
             flags: null
         }, instance(mockCli));
@@ -46,7 +46,7 @@ $EM_CONF[$_EXTKEY] = [
         expect(response.message).toEqual('ext_emconf.php: Set version to 1.0.0 and state to stable');
     });
 
-    it("set state to beta if none supplied and version ends with -dev", () => {
+    it("set state to beta if none supplied and version ends with -dev", async () => {
         mockFs({
             'ext_emconf.php': `<?php
 $EM_CONF[$_EXTKEY] = [
@@ -57,7 +57,7 @@ $EM_CONF[$_EXTKEY] = [
         });
         const command = new VersionizeCommand();
         const mockCli = mock(Cli);
-        const response = command.handleRequest({
+        const response = await command.handleRequest({
             input: ['versionize', '1.0.0-dev'],
             flags: null
         }, instance(mockCli));
@@ -66,11 +66,11 @@ $EM_CONF[$_EXTKEY] = [
         expect(response.message).toEqual('ext_emconf.php: Set version to 1.0.0-dev and state to beta');
     });
 
-    it("returns error if ext_emconf.php file not found", () => {
+    it("returns error if ext_emconf.php file not found", async () => {
         mockFs({});
         const command = new VersionizeCommand();
         const mockCli = mock(Cli);
-        const response = command.handleRequest({
+        const response = await command.handleRequest({
             input: ['versionize', '1.0.0'],
             flags: null
         }, instance(mockCli));
@@ -79,13 +79,13 @@ $EM_CONF[$_EXTKEY] = [
         expect(response.message).toEqual('File ext_emconf.php could not be found.');
     });
 
-    it("returns error if ext_emconf.php file does not have the expected format", () => {
+    it("returns error if ext_emconf.php file does not have the expected format", async () => {
         mockFs({
             'ext_emconf.php': `$foo = 'bar';`
         });
         const command = new VersionizeCommand();
         const mockCli = mock(Cli);
-        const response = command.handleRequest({
+        const response = await command.handleRequest({
             input: ['versionize', '1.0.0'],
             flags: null
         }, instance(mockCli));

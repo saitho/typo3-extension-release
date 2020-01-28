@@ -22,7 +22,7 @@ export class VersionizeCommand extends AbstractCliCommand {
         required: false
     }];
 
-    protected process(request: ICliRequest): ICliResponse {
+    protected async process(request: ICliRequest): Promise<ICliResponse> {
         const fileName = 'ext_emconf.php';
         if (!fs.existsSync(fileName)) {
             return new CliErrorResponse(`File ${fileName} could not be found.`);
