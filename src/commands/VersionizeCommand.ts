@@ -2,7 +2,6 @@ import {AbstractCliCommand} from "../cli/AbstractCliCommand";
 import {ICliRequest} from "../cli/ICliRequest";
 import {ICliResponse} from "../cli/ICliResponse";
 import {CliSuccessResponse} from "../cli/CliSuccessResponse";
-import * as PhpUnparser from "php-unparser";
 import * as fs from "fs";
 import {CliErrorResponse} from "../cli/CliErrorResponse";
 import {ExtEmConfAstProcessor} from "../helper/ExtEmConfAstProcessor";
@@ -30,8 +29,7 @@ export class VersionizeCommand extends AbstractCliCommand {
 
         this.astProcessor = ExtEmConfAstProcessor.forFile(fileName) as ExtEmConfAstProcessor;
 
-        const emConfArray = this.astProcessor.findEmConfArray();
-        if (!emConfArray) {
+        if (!this.astProcessor.hasConfArray()) {
             return new CliErrorResponse(`Array $EM_CONF could not be found in ${fileName}.`);
         }
 
@@ -45,12 +43,11 @@ export class VersionizeCommand extends AbstractCliCommand {
         const state = request.input[2] || defaultState;
 
         // Set version and state
-        this.astProcessor.setExtEmConfValue(emConfArray, 'version', version);
-        this.astProcessor.setExtEmConfValue(emConfArray, 'state', state);
+        this.astProcessor.setExtEmConfValue('version', version);
+        this.astProcessor.setExtEmConfValue('state', state);
 
         // Overwrite old file
-        const phpCode = PhpUnparser(this.astProcessor.getAst());
-        fs.writeFileSync(fileName, phpCode, {flag: 'w'});
+        fs.writeFileSync(fileName, this.astProcessor.toPHP(), {flag: 'w'});
 
         return new CliSuccessResponse(`ext_emconf.php: Set version to ${version} and state to ${state}`);
     }

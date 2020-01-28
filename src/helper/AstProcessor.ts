@@ -1,4 +1,6 @@
 import * as fs from "fs";
+import * as PhpParser from "php-parser";
+import * as PhpUnparser from "php-unparser";
 
 export class AstProcessor {
 
@@ -10,8 +12,8 @@ export class AstProcessor {
 
     public static forFile(filePath: string) {
         const contents = fs.readFileSync(filePath, 'utf8');
-        const phpParser = require('php-parser');
-        const ast = new phpParser().parseCode(contents);
+        // @ts-ignore
+        const ast = new PhpParser().parseCode(contents);
         return new this(ast);
     }
 
@@ -35,5 +37,9 @@ export class AstProcessor {
             }
         }
         return null;
+    }
+
+    public toPHP(): string {
+        return PhpUnparser(this.getAst());
     }
 }

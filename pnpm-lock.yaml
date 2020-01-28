@@ -12,6 +12,7 @@ devDependencies:
   commitizen: 4.0.3
   cz-conventional-changelog: 3.0.2
   jest: 24.9.0
+  mock-fs: 4.10.4
   semantic-release: 16.0.1_semantic-release@16.0.1
   ts-jest: 24.3.0_jest@24.9.0
   ts-mockito: 2.5.0
@@ -728,16 +729,16 @@ packages:
     dev: true
     resolution:
       integrity: sha512-hRJD2ahnnpLgsj6KWMYSrmXkM3rm2Dl1qkx6IOFD5FnuNPXJIG5L0dhgKXCYTRMGzU4n0wImQ/xfmRc4POUFlg==
-  /@types/istanbul-lib-report/1.1.1:
+  /@types/istanbul-lib-report/3.0.0:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.1
     dev: true
     resolution:
-      integrity: sha512-3BUTyMzbZa2DtDI2BkERNC6jJw2Mr2Y0oGI7mRxYNBPxppbtEK1F66u3bKwU2g+wxwWI7PAoRpJnOY1grJqzHg==
+      integrity: sha512-plGgXAPfVKFoYfa9NpYDAkseG+g6Jr294RqeqcqDixSbU34MZVJRi/P+7Y8GDpzkEwLaGZZOpKIEmeVZNtKsrg==
   /@types/istanbul-reports/1.1.1:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.1
-      '@types/istanbul-lib-report': 1.1.1
+      '@types/istanbul-lib-report': 3.0.0
     dev: true
     resolution:
       integrity: sha512-UpYjBi8xefVChsCoBpKShdxTllC9pwISirfoZsUa2AAdQg/Jd2KQGtSbw+ya7GPo7x/wAPlH6JBhKhAsXUEZNA==
@@ -4121,6 +4122,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
+  /mock-fs/4.10.4:
+    dev: true
+    resolution:
+      integrity: sha512-gDfZDLaPIvtOusbusLinfx6YSe2YpQsDT8qdP41P47dQ/NQggtkHukz7hwqgt8QvMBmAv+Z6DGmXPyb5BWX2nQ==
   /modify-values/1.0.1:
     dev: true
     engines:
@@ -6496,6 +6501,7 @@ specifiers:
   meow: ^6.0.0
   minimist: ^1.2.0
   minimist-options: ^4.0.2
+  mock-fs: ^4.10.4
   php-parser: ^2.2.0
   php-unparser: ^0.2.9
   semantic-release: ^17.0.0
