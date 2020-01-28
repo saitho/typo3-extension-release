@@ -1,4 +1,5 @@
 import {Cli} from "./cli/Cli";
+import {VersionizeCommand} from "./commands/VersionizeCommand";
 
 new Cli()
     .setExamples([
@@ -25,5 +26,9 @@ new Cli()
             default: true
         }
     })
-    //.addRequestHandler()
-    .run();
+    .addCommand(new VersionizeCommand())
+    .run()
+    .catch((error) => {
+        console.error(error);
+        process.exit(1);
+    });
