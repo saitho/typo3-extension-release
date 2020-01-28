@@ -1,14 +1,15 @@
 import * as meow from "meow";
-import {ICliRequestHandler} from "./ICliRequestHandler";
+import {ICliCommand} from "./ICliCommand";
 import {ICliResponse} from "./ICliResponse";
 import {CliOptions} from "./TCliOptions";
 import {ICliCommandExample} from "./ICliCommandExample";
+import {CliErrorResponse} from "./CliErrorResponse";
 
 export class Cli {
     protected binaryName = 'typo3-extension-release';
     protected options: CliOptions;
     protected examples: ICliCommandExample[];
-    protected requestHandlers: ICliRequestHandler[] = [];
+    protected commands: ICliCommand[] = [];
 
     public setOptions(options: CliOptions): this {
         this.options = options;
@@ -50,12 +51,12 @@ export class Cli {
         return text;
     }
 
-    public addRequestHandler(requestHandler: ICliRequestHandler): this {
-        this.requestHandlers.push(requestHandler);
+    public addCommand(command: ICliCommand): this {
+        this.commands.push(command);
         return this;
     }
 
-    run() {
+    async run() {
         const cli = meow(`
     Usage
       $ ${this.binaryName}
@@ -73,14 +74,24 @@ ${this.getExamplesText()}
         const request = {input: cli.input, flags: cli.flags};
 
         let response: ICliResponse;
-        for(const handler of this.requestHandlers) {
-            if (handler.canHandleRequest(request)) {
-                response = handler.handleRequest(request);
-                break;
+        const command = this.commands.filter((command) => command.canHandleRequest(request));
+        if (command.length == 0) {
+            response = new CliErrorResponse('The requested command was not found.');
+        } else if (command.length > 1) {
+            response = new CliErrorResponse('Multiple commands matching this call were found.');
+        } else {
+            try {
+                response = await command[0].handleRequest(request);
+            } catch (e) {
+                response = new CliErrorResponse(e);
             }
         }
 
-        // todo: evaluate response
-        console.log(response);
+        if (response instanceof CliErrorResponse) {
+            console.error('Command execution failed with the following error:\n\n' + response.message);
+            process.exit(response.errorCode > 0 ? response.errorCode : 1);
+        } else {
+            console.log(response.message || 'Command execution finished successfully.');
+        }
     }
 }
