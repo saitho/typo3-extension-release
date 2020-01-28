@@ -1,15 +1,20 @@
 {
-  "name": "my-npm-project",
-  "description": "",
-  "version": "1.0.0-dev",
-  "author": "",
+  "name": "@saithodev/typo3-extension-release",
+  "description": "Tool for releasing TYPO3 extensions",
+  "version": "0.0.0-development",
+  "author": "Mario Lubenka",
   "license": "MIT",
   "keywords": [
+    "typo3",
+    "extensions",
+    "release",
+    "typo3 ter",
+    "t3ext"
   ],
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/saitho/nodejs-package-template.git"
+    "url": "https://github.com/saitho/typo3-extension-release"
   },
   "scripts": {
     "build": "tsc",
@@ -24,7 +29,7 @@
     "commitizen": "^4.0.3",
     "cz-conventional-changelog": "^3.0.2",
     "jest": "^24.9.0",
-    "semantic-release": "^16.0.1",
+    "semantic-release": "^17.0.0",
     "ts-jest": "^24.2.0",
     "ts-mockito": "^2.5.0",
     "typedoc": "^0.15.8",
