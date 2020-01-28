@@ -27,6 +27,7 @@ jobs:
     #  node_js: lts/*
     #  script:
     #    - mkdir -p docs
+    #    - pnpm run build
     #  deploy:
     #    provider: script
     #    skip_cleanup: true

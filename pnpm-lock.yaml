@@ -1,14 +1,11 @@
 dependencies:
-  minimist: 1.2.0
-  minimist-options: 4.0.2
+  '@saithodev/cli-base': 2.0.1
   php-parser: 2.2.0
   php-unparser: 0.2.9
-  read-pkg-up: 7.0.1
-  yargs-parser: 16.1.0
 devDependencies:
   '@saithodev/semantic-release-sharedconf-npm': 2.0.2_semantic-release@16.0.1
   '@types/jest': 24.0.25
-  '@types/node': 13.5.0
+  '@types/node': 13.5.1
   commitizen: 4.0.3
   cz-conventional-changelog: 3.0.2
   jest: 24.9.0
@@ -500,6 +497,15 @@ packages:
     dev: true
     resolution:
       integrity: sha512-fjG1H79flRgbHkMPzhwaRp+05pi2QvM9RyVl9AErEU7LGFwAi4zupHWBPwi7ZiX1nivRxDcgqY1r9aeN1sjITA==
+  /@saithodev/cli-base/2.0.1:
+    dependencies:
+      minimist: 1.2.0
+      minimist-options: 4.0.2
+      read-pkg-up: 7.0.1
+      yargs-parser: 16.1.0
+    dev: false
+    resolution:
+      integrity: sha512-RWM4kop7tatA6wLVyodrLAtg2BBZ6tr/OPGtFolkOrsZx200fT/fIwine/csRssZN1JRCXjETXU+emTlBAMLqg==
   /@saithodev/semantic-release-sharedconf-npm/2.0.2_semantic-release@16.0.1:
     dependencies:
       '@qiwi/semantic-release-gh-pages-plugin': 1.15.8
@@ -769,6 +775,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-Onhn+z72D2O2Pb2ql2xukJ55rglumsVo1H6Fmyi8mlU9SvKdBk/pUSUAiBY/d9bAOF7VVWajX3sths/+g6ZiAQ==
+  /@types/node/13.5.1:
+    dev: true
+    resolution:
+      integrity: sha512-Jj2W7VWQ2uM83f8Ls5ON9adxN98MvyJsMSASYFuSvrov8RMRY64Ayay7KV35ph1TSGIJ2gG9ZVDdEq3c3zaydA==
   /@types/node/8.10.59:
     dev: true
     resolution:
@@ -6404,21 +6414,18 @@ packages:
     resolution:
       integrity: sha512-T39FNN1b6hCW4SOIk1XyTOWxtXdcen0t+XYrysQmChzSipvhBO8Bj0nK1ozAasdk24dNWuMZvr4k24nz+8HHLg==
 specifiers:
+  '@saithodev/cli-base': ^2.0.1
   '@saithodev/semantic-release-sharedconf-npm': ^2.0.2
   '@types/jest': ^24.0.23
-  '@types/node': ^13.5.0
+  '@types/node': ^13.5.1
   commitizen: ^4.0.3
   cz-conventional-changelog: ^3.0.2
   jest: ^24.9.0
-  minimist: ^1.2.0
-  minimist-options: ^4.0.2
   mock-fs: ^4.10.4
   php-parser: ^2.2.0
   php-unparser: ^0.2.9
-  read-pkg-up: ^7.0.1
   semantic-release: ^17.0.0
   ts-jest: ^24.2.0
   ts-mockito: ^2.5.0
   typedoc: ^0.15.8
   typescript: ^3.7.3
-  yargs-parser: ^16.1.0

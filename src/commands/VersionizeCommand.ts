@@ -1,12 +1,8 @@
-import {AbstractCliCommand} from "../cli/AbstractCliCommand";
-import {ICliRequest} from "../cli/ICliRequest";
-import {ICliResponse} from "../cli/ICliResponse";
-import {CliSuccessResponse} from "../cli/CliSuccessResponse";
+import {IRequest, IResponse, SuccessResponse, ErrorResponse, AbstractCommand} from "@saithodev/cli-base";
 import * as fs from "fs";
-import {CliErrorResponse} from "../cli/CliErrorResponse";
 import {ExtEmConfAstProcessor} from "../helper/ExtEmConfAstProcessor";
 
-export class VersionizeCommand extends AbstractCliCommand {
+export class VersionizeCommand extends AbstractCommand {
     commandName = 'versionize';
     commandDescription = 'Adjusts version and state in ext_emconf.php';
 
@@ -22,16 +18,16 @@ export class VersionizeCommand extends AbstractCliCommand {
         required: false
     }];
 
-    protected async process(request: ICliRequest): Promise<ICliResponse> {
+    protected async process(request: IRequest): Promise<IResponse> {
         const fileName = 'ext_emconf.php';
         if (!fs.existsSync(fileName)) {
-            return new CliErrorResponse(`File ${fileName} could not be found.`);
+            return new ErrorResponse(`File ${fileName} could not be found.`);
         }
 
         this.astProcessor = ExtEmConfAstProcessor.forFile(fileName) as ExtEmConfAstProcessor;
 
         if (!this.astProcessor.hasConfArray()) {
-            return new CliErrorResponse(`Array $EM_CONF could not be found in ${fileName}.`);
+            return new ErrorResponse(`Array $EM_CONF could not be found in ${fileName}.`);
         }
 
         const version = request.input[1];
@@ -50,6 +46,6 @@ export class VersionizeCommand extends AbstractCliCommand {
         // Overwrite old file
         fs.writeFileSync(fileName, this.astProcessor.toPHP(), {flag: 'w'});
 
-        return new CliSuccessResponse(`ext_emconf.php: Set version to ${version} and state to ${state}`);
+        return new SuccessResponse(`ext_emconf.php: Set version to ${version} and state to ${state}`);
     }
 }

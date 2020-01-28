@@ -1,8 +1,6 @@
 import * as mockFs from 'mock-fs';
 import {VersionizeCommand} from "../../src/commands/VersionizeCommand";
-import {CliErrorResponse} from "../../src/cli/CliErrorResponse";
-import {CliSuccessResponse} from "../../src/cli/CliSuccessResponse";
-import {Cli} from "../../src/cli/Cli";
+import {Cli, SuccessResponse, ErrorResponse} from "@saithodev/cli-base";
 import {mock, instance} from 'ts-mockito';
 
 describe("VersionizeCommand", () => {
@@ -22,7 +20,7 @@ $EM_CONF[$_EXTKEY] = [
             flags: null
         }, instance(mockCli));
         mockFs.restore();
-        expect(response).toBeInstanceOf(CliSuccessResponse);
+        expect(response).toBeInstanceOf(SuccessResponse);
         expect(response.message).toEqual('ext_emconf.php: Set version to 1.0.0 and state to alpha');
     });
 
@@ -42,7 +40,7 @@ $EM_CONF[$_EXTKEY] = [
             flags: null
         }, instance(mockCli));
         mockFs.restore();
-        expect(response).toBeInstanceOf(CliSuccessResponse);
+        expect(response).toBeInstanceOf(SuccessResponse);
         expect(response.message).toEqual('ext_emconf.php: Set version to 1.0.0 and state to stable');
     });
 
@@ -62,7 +60,7 @@ $EM_CONF[$_EXTKEY] = [
             flags: null
         }, instance(mockCli));
         mockFs.restore();
-        expect(response).toBeInstanceOf(CliSuccessResponse);
+        expect(response).toBeInstanceOf(SuccessResponse);
         expect(response.message).toEqual('ext_emconf.php: Set version to 1.0.0-dev and state to beta');
     });
 
@@ -75,7 +73,7 @@ $EM_CONF[$_EXTKEY] = [
             flags: null
         }, instance(mockCli));
         mockFs.restore();
-        expect(response).toBeInstanceOf(CliErrorResponse);
+        expect(response).toBeInstanceOf(ErrorResponse);
         expect(response.message).toEqual('File ext_emconf.php could not be found.');
     });
 
@@ -90,7 +88,7 @@ $EM_CONF[$_EXTKEY] = [
             flags: null
         }, instance(mockCli));
         mockFs.restore();
-        expect(response).toBeInstanceOf(CliErrorResponse);
+        expect(response).toBeInstanceOf(ErrorResponse);
         expect(response.message).toEqual('Array $EM_CONF could not be found in ext_emconf.php.');
     });
 });

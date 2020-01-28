@@ -1,7 +1,5 @@
-import {Cli} from "./cli/Cli";
+import {Cli, HelpCommand, VersionCommand} from "@saithodev/cli-base";
 import {VersionizeCommand} from "./commands/VersionizeCommand";
-import {HelpCommand} from "./commands/HelpCommand";
-import {VersionCommand} from "./commands/VersionCommand";
 
 new Cli('typo3-extension-release')
     .setOptions({
