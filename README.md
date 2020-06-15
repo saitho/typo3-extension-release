@@ -4,6 +4,7 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=typo3-extension-release&metric=alert_status)](https://sonarcloud.io/dashboard?id=typo3-extension-release)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsaitho%2Ftypo3-extension-release.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fsaitho%2Ftypo3-extension-release?ref=badge_shield)
 
 This is a CLI tool which helps releasing TYPO3 extensions.
 
@@ -51,3 +52,6 @@ DRY-RUN active. Nothing written.
 ## Features that might fit here
 
 - Releasing extension to TYPO3 TER
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsaitho%2Ftypo3-extension-release.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fsaitho%2Ftypo3-extension-release?ref=badge_large)
